@@ -45,8 +45,8 @@ module.exports = configure(function (ctx) {
     build: {
       vueRouterMode: "history", // available values: 'hash', 'history'
       env: {
-        SUPABASE_URL: process.env.SUPABASE_URL,
-        SUPABASE_KEY: process.env.SUPABASE_KEY,
+        SUPABASE_URL: 'https://gwzpsqejeuyvavkdysye.supabase.co',
+        SUPABASE_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd3enBzcWVqZXV5dmF2a2R5c3llIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjYwNDgyMzEsImV4cCI6MTk4MTYyNDIzMX0.andIXChQK9XTp-x4uw20V9OF6DrHTRPkt4zQ7-NBlCg',
       },
       // transpile: false,
       // publicPath: '/',
