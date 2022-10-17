@@ -7,8 +7,8 @@
 // https://quasar.dev/quasar-cli/quasar-conf-js
 
 /* eslint-env node */
-const ESLintPlugin = require('eslint-webpack-plugin')
-const { configure } = require('quasar/wrappers')
+const ESLintPlugin = require("eslint-webpack-plugin");
+const { configure } = require("quasar/wrappers");
 
 module.exports = configure(function (ctx) {
   return {
@@ -21,15 +21,10 @@ module.exports = configure(function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/boot-files
-    boot: [
-      'supabase',
-      'axios'
-    ],
+    boot: ["supabase", "axios"],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
-    css: [
-      'app.css'
-    ],
+    css: ["app.css"],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
@@ -41,17 +36,17 @@ module.exports = configure(function (ctx) {
       // 'line-awesome',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
-      'roboto-font', // optional, you are not bound to it
-      'material-icons', // optional, you are not bound to it
-      'mdi-v5'
+      "roboto-font", // optional, you are not bound to it
+      "material-icons", // optional, you are not bound to it
+      "mdi-v5",
     ],
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
-      vueRouterMode: 'history', // available values: 'hash', 'history'
+      vueRouterMode: "history", // available values: 'hash', 'history'
       env: {
-        SUPABASE_URL: 'https://fiopknivucqeguhjpqdo.supabase.co',
-        SUPABASE_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzOTUyMTcwOSwiZXhwIjoxOTU1MDk3NzA5fQ.prM0rQ-qe7mHLFgm_508rCaC47lVJpx7YQqFnPUsHVs'
+        SUPABASE_URL: process.env.SUPABASE_URL,
+        SUPABASE_KEY: process.env.SUPABASE_KEY,
       },
       // transpile: false,
       // publicPath: '/',
@@ -72,34 +67,35 @@ module.exports = configure(function (ctx) {
 
       // https://quasar.dev/quasar-cli/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpack (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js', 'vue'] }])
-      }
+      chainWebpack(chain) {
+        chain
+          .plugin("eslint-webpack-plugin")
+          .use(ESLintPlugin, [{ extensions: ["js", "vue"] }]);
+      },
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
       server: {
-        type: 'http'
+        type: "http",
       },
       port: 8080,
-      open: true // opens browser window automatically
+      open: true, // opens browser window automatically
     },
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
     framework: {
       config: {
         brand: {
-          primary: '#2c9c6a',
-          secondary: '#26A69A',
-          accent: '#9C27B0',
-          dark: '#1d1d1d',
-          positive: '#21BA45',
-          negative: '#C10015',
-          info: '#31CCEC',
-          warning: '#F2C037'
-        }
+          primary: "#2c9c6a",
+          secondary: "#26A69A",
+          accent: "#9C27B0",
+          dark: "#1d1d1d",
+          positive: "#21BA45",
+          negative: "#C10015",
+          info: "#31CCEC",
+          warning: "#F2C037",
+        },
       },
 
       // iconSet: 'material-icons', // Quasar icon set
@@ -113,17 +109,12 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: [
-        'Dialog',
-        'Notify',
-        'Loading',
-        'LocalStorage'
-      ]
+      plugins: ["Dialog", "Notify", "Loading", "LocalStorage"],
     },
 
     // animations: 'all', // --- includes all animations
     // https://quasar.dev/options/animations
-    animations: 'all',
+    animations: "all",
 
     // https://quasar.dev/quasar-cli/developing-ssr/configuring-ssr
     ssr: {
@@ -138,72 +129,74 @@ module.exports = configure(function (ctx) {
       maxAge: 1000 * 60 * 60 * 24 * 30,
       // Tell browser when a file from the server should expire from cache (in ms)
 
-      chainWebpackWebserver (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js'] }])
+      chainWebpackWebserver(chain) {
+        chain
+          .plugin("eslint-webpack-plugin")
+          .use(ESLintPlugin, [{ extensions: ["js"] }]);
       },
 
       middlewares: [
-        ctx.prod ? 'compression' : '',
-        'render' // keep this as last one
-      ]
+        ctx.prod ? "compression" : "",
+        "render", // keep this as last one
+      ],
     },
 
     // https://quasar.dev/quasar-cli/developing-pwa/configuring-pwa
     pwa: {
-      workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
+      workboxPluginMode: "GenerateSW", // 'GenerateSW' or 'InjectManifest'
       workboxOptions: { skipWaiting: true, clientsClaim: true }, // only for GenerateSW
 
       // for the custom service worker ONLY (/src-pwa/custom-service-worker.[js|ts])
       // if using workbox in InjectManifest mode
-      chainWebpackCustomSW (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js'] }])
+      chainWebpackCustomSW(chain) {
+        chain
+          .plugin("eslint-webpack-plugin")
+          .use(ESLintPlugin, [{ extensions: ["js"] }]);
       },
 
       manifest: {
-        name: 'Quasar Estoque Supabase',
-        short_name: 'Quasar Estoque Supabase',
-        description: 'Estoque fácil na palma da sua mão',
-        display: 'standalone',
-        orientation: 'portrait',
-        background_color: '#ffffff',
-        theme_color: '#2c9c6a',
-        categories: ['utilities', 'productivity', 'personalization'],
+        name: "Quasar Estoque Supabase",
+        short_name: "Quasar Estoque Supabase",
+        description: "Estoque fácil na palma da sua mão",
+        display: "standalone",
+        orientation: "portrait",
+        background_color: "#ffffff",
+        theme_color: "#2c9c6a",
+        categories: ["utilities", "productivity", "personalization"],
         icons: [
           {
-            src: 'icons/icon-128x128.png',
-            sizes: '128x128',
-            type: 'image/png'
+            src: "icons/icon-128x128.png",
+            sizes: "128x128",
+            type: "image/png",
           },
           {
-            src: 'icons/icon-192x192.png',
-            sizes: '192x192',
-            type: 'image/png'
+            src: "icons/icon-192x192.png",
+            sizes: "192x192",
+            type: "image/png",
           },
           {
-            src: 'icons/icon-256x256.png',
-            sizes: '256x256',
-            type: 'image/png'
+            src: "icons/icon-256x256.png",
+            sizes: "256x256",
+            type: "image/png",
           },
           {
-            src: 'icons/icon-384x384.png',
-            sizes: '384x384',
-            type: 'image/png'
+            src: "icons/icon-384x384.png",
+            sizes: "384x384",
+            type: "image/png",
           },
           {
-            src: 'icons/icon-512x512.png',
-            sizes: '512x512',
-            type: 'image/png'
+            src: "icons/icon-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
           },
           {
-            src: 'icons/maskable_icon_x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'maskable'
-          }
-        ]
-      }
+            src: "icons/maskable_icon_x512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "maskable",
+          },
+        ],
+      },
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova
@@ -213,22 +206,20 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-capacitor-apps/configuring-capacitor
     capacitor: {
-      hideSplashscreen: true
+      hideSplashscreen: true,
     },
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-electron-apps/configuring-electron
     electron: {
-      bundler: 'packager', // 'packager' or 'builder'
+      bundler: "packager", // 'packager' or 'builder'
 
       packager: {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
-
         // OS X / Mac App Store
         // appBundleId: '',
         // appCategoryType: '',
         // osxSign: '',
         // protocol: 'myapp://path',
-
         // Windows only
         // win32metadata: { ... }
       },
@@ -236,20 +227,22 @@ module.exports = configure(function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'quasar-estoque-supabase'
+        appId: "quasar-estoque-supabase",
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpackMain (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js'] }])
+      chainWebpackMain(chain) {
+        chain
+          .plugin("eslint-webpack-plugin")
+          .use(ESLintPlugin, [{ extensions: ["js"] }]);
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpackPreload (chain) {
-        chain.plugin('eslint-webpack-plugin')
-          .use(ESLintPlugin, [{ extensions: ['js'] }])
-      }
-    }
-  }
-})
+      chainWebpackPreload(chain) {
+        chain
+          .plugin("eslint-webpack-plugin")
+          .use(ESLintPlugin, [{ extensions: ["js"] }]);
+      },
+    },
+  };
+});
